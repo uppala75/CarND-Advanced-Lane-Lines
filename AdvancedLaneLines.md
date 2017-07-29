@@ -84,7 +84,7 @@ plt.show()
 ```
 
 
-![png](output_5_0.png)
+![png](./Images4report/output_5_0.png)
 
 
 ### It should be noted that some of the images are not plotted above because the "findChessboardCorners()" function could not find 9 x 6 inside corners inside these input images
@@ -128,7 +128,7 @@ plt.show()
 ```
 
 
-![png](output_8_0.png)
+![png](./Images4report/output_8_0.png)
 
 
 
@@ -158,7 +158,7 @@ plt.show()
 ```
 
 
-![png](output_9_0.png)
+![png](./Images4report/output_9_0.png)
 
 
 ### Although it may not be visible at a first glance, a closer look at the sides of the undistorted image above shows that the radial distortion has been removed. An example where this is obvious: the white car on the right is slightly cropped along with the trees
@@ -284,7 +284,7 @@ plt.show()
 ```
 
 
-![png](output_13_0.png)
+![png](./Images4report/output_13_0.png)
 
 
 
@@ -311,7 +311,7 @@ plt.show()
 ```
 
 
-![png](output_14_0.png)
+![png](./Images4report/output_14_0.png)
 
 
 
@@ -338,7 +338,7 @@ plt.show()
 ```
 
 
-![png](output_15_0.png)
+![png](./Images4report/output_15_0.png)
 
 
 
@@ -364,7 +364,7 @@ plt.show()
 ```
 
 
-![png](output_16_0.png)
+![png](./Images4report/output_16_0.png)
 
 
 
@@ -390,7 +390,7 @@ plt.show()
 ```
 
 
-![png](output_17_0.png)
+![png](./Images4report/output_17_0.png)
 
 
 
@@ -417,7 +417,7 @@ plt.show()
 ```
 
 
-![png](output_18_0.png)
+![png](./Images4report/output_18_0.png)
 
 
 ### After experimenting with several thresholds and color spaces, I chose to use the combined binary thresholded image from the Sobel threshold in the x & y directions along with the color thresholds in the H & V channels, to get clear lane lines in all the test images. This forms the image processing pipeline for generating a thresholded binary image
@@ -449,7 +449,7 @@ plt.show()
 ```
 
 
-![png](output_20_0.png)
+![png](./Images4report/output_20_0.png)
 
 
 ### Read the test images, pass them through the pipeline, warp the perspective by selecting a region of interest within the image, and create a bird's eye view. Visualize the results and ensure that the selected region of interest is appropriate by confirming that the lane lanes are indeed parallel to each other after warping the image
@@ -512,67 +512,67 @@ plt.show()
 ```
 
 
-![png](output_22_0.png)
+![png](./Images4report/output_22_0.png)
 
 
 
-![png](output_22_1.png)
+![png](./Images4report/output_22_1.png)
 
 
 
-![png](output_22_2.png)
+![png](./Images4report/output_22_2.png)
 
 
 
-![png](output_22_3.png)
+![png](./Images4report/output_22_3.png)
 
 
 
-![png](output_22_4.png)
+![png](./Images4report/output_22_4.png)
 
 
 
-![png](output_22_5.png)
+![png](./Images4report/output_22_5.png)
 
 
 
-![png](output_22_6.png)
+![png](./Images4report/output_22_6.png)
 
 
 
-![png](output_22_7.png)
+![png](./Images4report/output_22_7.png)
 
 
 
-![png](output_22_8.png)
+![png](./Images4report/output_22_8.png)
 
 
 
-![png](output_22_9.png)
+![png](./Images4report/output_22_9.png)
 
 
 
-![png](output_22_10.png)
+![png](./Images4report/output_22_10.png)
 
 
 
-![png](output_22_11.png)
+![png](./Images4report/output_22_11.png)
 
 
 
-![png](output_22_12.png)
+![png](./Images4report/output_22_12.png)
 
 
 
-![png](output_22_13.png)
+![png](./Images4report/output_22_13.png)
 
 
 
-![png](output_22_14.png)
+![png](./Images4report/output_22_14.png)
 
 
 
-![png](output_22_15.png)
+![png](./Images4report/output_22_15.png)
 
 
 ### Apply convolution which will maximize the number of "hot" pixels in each window. This convolution is the summation of the product of two separate signals: the window template and the vertical slice of the pixel image. The window template is slid across the image from left to right and any overlapping values are summed together, creating the convolved signal. The peak of the convolved signal is where the highest overlap of pixels occured and is the position for the lane marker.
@@ -651,35 +651,35 @@ for idx,fname in enumerate(images):
 ```
 
 
-![png](output_24_0.png)
+![png](./Images4report/output_24_0.png)
 
 
 
-![png](output_24_1.png)
+![png](./Images4report/output_24_1.png)
 
 
 
-![png](output_24_2.png)
+![png](./Images4report/output_24_2.png)
 
 
 
-![png](output_24_3.png)
+![png](./Images4report/output_24_3.png)
 
 
 
-![png](output_24_4.png)
+![png](./Images4report/output_24_4.png)
 
 
 
-![png](output_24_5.png)
+![png](./Images4report/output_24_5.png)
 
 
 
-![png](output_24_6.png)
+![png](./Images4report/output_24_6.png)
 
 
 
-![png](output_24_7.png)
+![png](./Images4report/output_24_7.png)
 
 
 ### Fit a polynomial to the identified lane lines on the left and the right. Visualize the results by overlapping the lane lines on to the original undistorted image
@@ -805,35 +805,35 @@ plt.show()
 ```
 
 
-![png](output_26_0.png)
+![png](./Images4report/output_26_0.png)
 
 
 
-![png](output_26_1.png)
+![png](./Images4report/output_26_1.png)
 
 
 
-![png](output_26_2.png)
+![png](./Images4report/output_26_2.png)
 
 
 
-![png](output_26_3.png)
+![png](./Images4report/output_26_3.png)
 
 
 
-![png](output_26_4.png)
+![png](./Images4report/output_26_4.png)
 
 
 
-![png](output_26_5.png)
+![png](./Images4report/output_26_5.png)
 
 
 
-![png](output_26_6.png)
+![png](./Images4report/output_26_6.png)
 
 
 
-![png](output_26_7.png)
+![png](./Images4report/output_26_7.png)
 
 
 ### Calculate the radius of curvature using polynomial fit functions, and the position of the camera/car's center from the left or right lane. Display these results along with the fitted lane lines on top of the original image
@@ -961,35 +961,35 @@ for idx,fname in enumerate(images):
 ```
 
 
-![png](output_28_0.png)
+![png](./Images4report/output_28_0.png)
 
 
 
-![png](output_28_1.png)
+![png](./Images4report/output_28_1.png)
 
 
 
-![png](output_28_2.png)
+![png](./Images4report/output_28_2.png)
 
 
 
-![png](output_28_3.png)
+![png](./Images4report/output_28_3.png)
 
 
 
-![png](output_28_4.png)
+![png](./Images4report/output_28_4.png)
 
 
 
-![png](output_28_5.png)
+![png](./Images4report/output_28_5.png)
 
 
 
-![png](output_28_6.png)
+![png](./Images4report/output_28_6.png)
 
 
 
-![png](output_28_7.png)
+![png](./Images4report/output_28_7.png)
 
 
 ### Process videos to display the fitted lane lines, radius of curvature, and position of the car from the center
