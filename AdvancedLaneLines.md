@@ -10,6 +10,13 @@
 ### -- Warp the detected lane boundaries back onto the original image.
 ### -- Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
+### Relevant files and directories for this project: 
+#### -- AdvancedLaneLines.ipynb -> Python Notebook
+#### -- AdvancedLaneLines.MD -> MarkDown Report File
+#### -- camera_cal -> Directory with files for camera calibration
+#### -- test_images -> Directory with test images for this project
+#### -- Images4report -> Directory with images used for this report
+
 ### Python Code for the Advanced Lane Finding project:
 
 ### Import the necessary packages
@@ -1137,9 +1144,9 @@ video_clip.write_videofile(Output_video, audio=False)
     [MoviePy] Done.
     [MoviePy] >>>> Video ready: output1_tracked.mp4 
     
-    
+### Link to the output [Video](https://youtu.be/9nHSj2Qau1k)  
 
-### Summary: The above solution works well on the standard video. However, it needs to be improved for the challenge videos. This is because the lanes are different in the challenge video: half of the lane is a freshly paved road and is different in color with the other other half of the lane. Also, the harder challenge video has glare on the camera as a result of direct sunlight falling on it, as well as high contrast contributing to washed out lane lines. This creates problems for the algorithm. One solution would be to dynamically adjust the contrast of the image frames dynamically to ensure images are not washed out and make sure they have a good dynamic range to work with in all lighting conditions. The harder challenge videos also have roads which are curvy and have a slope which makes it difficult to warp the images properly to feed into the algorithm. This can also be addressed by creating a dynamic region of interest for each image frame. These are some of the things that need to be explored when time permits. Overall, there is a lot of trail and error process in this project which makes it quite time consuming.
+### Summary: The above solution works well on the standard project video. However, it needs to be improved for the challenge videos. This is because the lanes are different in the challenge video: half of the lane is a freshly paved road and is different in color with the other other half of the lane. Also, the harder challenge video has glare on the camera as a result of direct sunlight falling on it, as well as high contrast contributing to washed out lane lines. This creates problems for the algorithm. One solution would be to dynamically adjust the contrast of the image frames dynamically to ensure images are not washed out and make sure they have a good dynamic range to work with in all lighting conditions. The harder challenge videos also have roads which are curvy and have a slope which makes it difficult to warp the images properly to feed into the algorithm. This can also be addressed by creating a dynamic region of interest for each image frame. These are some of the things that need to be explored when time permits. Overall, there is a lot of trail and error process in this project which makes it quite time consuming.
 
 
 ```python
