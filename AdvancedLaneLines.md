@@ -12,7 +12,7 @@
 
 ### Relevant files and directories for this project: 
 #### -- AdvancedLaneLines.ipynb -> Python Notebook
-#### -- AdvancedLaneLines.MD -> MarkDown Report File
+#### -- AdvancedLaneLines.md -> MarkDown Report File
 #### -- camera_cal -> Directory with files for camera calibration
 #### -- test_images -> Directory with test images for this project
 #### -- Images4report -> Directory with images used for this report
