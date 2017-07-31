@@ -1071,6 +1071,12 @@ def process_image(img):
     warpage = np.array(cv2.merge((warped,warped,warped)),np.uint8) # making the original road pixels 3 color channels
     result = cv2.addWeighted(warpage, 1, template, 0.5, 0.0) # overlay the original road image with window results
     
+    windowfit = np.copy(result)
+    cv2.putText(windowfit, 'Sliding window results',(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+    
+    warpage1 = np.copy(warpage)
+    cv2.putText(warpage1, 'Bird\'s-eye View',(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+    
     #fit the lane boundaries to the left, right center positions found
     yvals = range(0,warped.shape[0])
     
@@ -1096,7 +1102,11 @@ def process_image(img):
     cv2.fillPoly(road,[inner_lane],color=[0,255,0])
     cv2.fillPoly(road_bkg,[left_lane],color=[255,255,255])
     cv2.fillPoly(road_bkg,[right_lane],color=[255,255,255])
-
+    
+    #Results screen portion for polynomial fit
+    road1 = np.copy(road)
+    cv2.putText(road1, 'Polynomial fit',(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+    
     road_warped = cv2.warpPerspective(road,Minv,img_size,flags=cv2.INTER_LINEAR)
     road_warped_bkg= cv2.warpPerspective(road_bkg,Minv,img_size,flags=cv2.INTER_LINEAR)
     
@@ -1119,7 +1129,14 @@ def process_image(img):
     cv2.putText(result, 'Radius of Curvature='+str(round(curverad,3))+'m ',(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
     cv2.putText(result, 'Vehicle is '+str(abs(round(center_diff,3)))+'m '+side_pos+' of center',(50,100), cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
 
-    return result
+    height, width = 1080, 1920
+    FinalScreen = np.zeros((height, width, 3), dtype=np.uint8)
+    FinalScreen[0:540,0:960] = cv2.resize(result, (960,540), interpolation=cv2.INTER_AREA)
+    FinalScreen[0:540,960:1920] = cv2.resize(warpage1, (960,540), interpolation=cv2.INTER_AREA)
+    FinalScreen[540:1080,0:960] = cv2.resize(windowfit, (960,540), interpolation=cv2.INTER_AREA)
+    FinalScreen[540:1080,960:1920] = cv2.resize(road1, (960,540), interpolation=cv2.INTER_AREA)
+
+    return FinalScreen
 
 Output_video = 'output1_tracked.mp4'
 Input_video = 'project_video.mp4'
@@ -1144,7 +1161,7 @@ video_clip.write_videofile(Output_video, audio=False)
     [MoviePy] Done.
     [MoviePy] >>>> Video ready: output1_tracked.mp4 
     
-### Link to the output [Video](https://youtu.be/9nHSj2Qau1k)  
+### Link to the output [Video](https://youtu.be/IyxVDVoXKzs)  
 
 ### Summary: The above solution works well on the standard project video. However, it needs to be improved for the challenge videos. This is because the lanes are different in the first challenge video: a part of the lane is a freshly paved road and is different in color with the other part of the lane which is an older paved road. The position of the part of the lane also changes from the center of the lane to the edge of the lane too making it difficult for the algorithm to locate this through all images. 
 
