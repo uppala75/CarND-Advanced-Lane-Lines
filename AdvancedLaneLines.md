@@ -1008,6 +1008,12 @@ def process_image(img):
     #undistort the image
     img = cv2.undistort(img,mtx,dist,None,mtx)
     
+    warptrap = np.copy(img)
+	cv2.line(warptrap, (int(src[0][0]), int(src[0][1])), (int(src[1][0]), int(src[1][1])), [255,0,0], 10, cv2.LINE_AA)
+	cv2.line(warptrap, (int(src[1][0]), int(src[1][1])), (int(src[2][0]), int(src[2][1])), [255,0,0], 10, cv2.LINE_AA)
+	cv2.line(warptrap, (int(src[2][0]), int(src[2][1])), (int(src[3][0]), int(src[3][1])), [255,0,0], 10, cv2.LINE_AA)
+	cv2.line(warptrap, (int(src[3][0]), int(src[3][1])), (int(src[0][0]), int(src[0][1])), [255,0,0], 10, cv2.LINE_AA)
+    
     #pass image thru the pipeline
     #preprocessImage = np.zeros_like(img[:,:,0])
     #gradx = abs_sobel_thresh(img, orient='x',thresh_min=20, thresh_max=100)
@@ -1019,6 +1025,10 @@ def process_image(img):
     c_binary = color_threshold(img, sthresh=(100,255), vthresh=(50,255))
     preprocessImage[((gradx == 1) & (grady ==1) | (c_binary == 1))] = 255
 
+	binaryImage = np.copy(preprocessImage)
+	binaryImage = np.array(cv2.merge((binaryImage,binaryImage,binaryImage)),np.uint8)
+	cv2.putText(binaryImage, 'Binary Image',(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+    
     img_size = (img.shape[1],img.shape[0])
     
     bot_width = .76 # percentage of bottom trapezoidal height
@@ -1076,6 +1086,10 @@ def process_image(img):
     
     warpage1 = np.copy(warpage)
     cv2.putText(warpage1, 'Bird\'s-eye View',(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+    cv2.line(warpage1, (int(dst[0][0]), int(dst[0][1])), (int(dst[1][0]), int(dst[1][1])), [0,0,255], 10, cv2.LINE_AA)
+	cv2.line(warpage1, (int(dst[1][0]), int(dst[1][1])), (int(dst[2][0]), int(dst[2][1])), [0,0,255], 10, cv2.LINE_AA)
+	cv2.line(warpage1, (int(dst[2][0]), int(dst[2][1])), (int(dst[3][0]), int(dst[3][1])), [0,0,255], 10, cv2.LINE_AA)
+	cv2.line(warpage1, (int(dst[3][0]), int(dst[3][1])), (int(dst[0][0]), int(dst[0][1])), [0,0,255], 10, cv2.LINE_AA)
     
     #fit the lane boundaries to the left, right center positions found
     yvals = range(0,warped.shape[0])
@@ -1130,11 +1144,12 @@ def process_image(img):
     cv2.putText(result, 'Vehicle is '+str(abs(round(center_diff,3)))+'m '+side_pos+' of center',(50,100), cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
 
     height, width = 1080, 1920
-    FinalScreen = np.zeros((height, width, 3), dtype=np.uint8)
-    FinalScreen[0:540,0:960] = cv2.resize(result, (960,540), interpolation=cv2.INTER_AREA)
-    FinalScreen[0:540,960:1920] = cv2.resize(warpage1, (960,540), interpolation=cv2.INTER_AREA)
-    FinalScreen[540:1080,0:960] = cv2.resize(windowfit, (960,540), interpolation=cv2.INTER_AREA)
-    FinalScreen[540:1080,960:1920] = cv2.resize(road1, (960,540), interpolation=cv2.INTER_AREA)
+	FinalScreen[0:720,0:1280] = cv2.resize(result, (1280,720), interpolation=cv2.INTER_AREA)
+	FinalScreen[0:360,1280:1920] = cv2.resize(warptrap, (640,360), interpolation=cv2.INTER_AREA)
+	FinalScreen[360:720,1280:1920] = cv2.resize(binaryImage, (640,360), interpolation=cv2.INTER_AREA)
+	FinalScreen[720:1080,1280:1920] = cv2.resize(warpage1, (640,360), interpolation=cv2.INTER_AREA)
+	FinalScreen[720:1080,0:640] = cv2.resize(windowfit, (640,360), interpolation=cv2.INTER_AREA)
+	FinalScreen[720:1080,640:1280] = cv2.resize(road1, (640,360), interpolation=cv2.INTER_AREA)
 
     return FinalScreen
 
@@ -1161,7 +1176,7 @@ video_clip.write_videofile(Output_video, audio=False)
     [MoviePy] Done.
     [MoviePy] >>>> Video ready: output1_tracked.mp4 
     
-### Link to the output [Video](https://youtu.be/IyxVDVoXKzs)  
+### Link to the output [Video](https://youtu.be/4YPRYpOrNgg)  
 
 ### Summary: The above solution works well on the standard project video. However, it needs to be improved for the challenge videos. This is because the lanes are different in the first challenge video: a part of the lane is a freshly paved road and is different in color with the other part of the lane which is an older paved road. The position of the part of the lane also changes from the center of the lane to the edge of the lane too making it difficult for the algorithm to locate this through all images. 
 
