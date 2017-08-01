@@ -13,6 +13,8 @@
 ### Relevant files and directories for this project: 
 #### -- AdvancedLaneLines.ipynb -> Python Notebook
 #### -- AdvancedLaneLines.md -> MarkDown Report File
+#### -- tracker.py -> Line tracker class to find and store window centroids, and store past lane detections to properly treat new 
+####    detections
 #### -- camera_cal -> Directory with files for camera calibration
 #### -- test_images -> Directory with test images for this project
 #### -- Images4report -> Directory with images used for this report
