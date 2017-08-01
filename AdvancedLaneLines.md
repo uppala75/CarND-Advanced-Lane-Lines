@@ -1178,7 +1178,7 @@ video_clip.write_videofile(Output_video, audio=False)
     [MoviePy] Done.
     [MoviePy] >>>> Video ready: output1_tracked.mp4 
     
-### Link to the output [Video](https://youtu.be/4YPRYpOrNgg)  
+### Link to the output [Video](https://youtu.be/t6AbiXpMWXI)  
 
 ### Summary: The above solution works well on the standard project video. However, it needs to be improved for the challenge videos. This is because the lanes are different in the first challenge video: a part of the lane is a freshly paved road and is different in color with the other part of the lane which is an older paved road. The position of the part of the lane also changes from the center of the lane to the edge of the lane too making it difficult for the algorithm to locate this through all images. 
 
